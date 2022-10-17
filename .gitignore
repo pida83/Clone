@@ -88,3 +88,16 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+CloneProject.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+CloneProject.xcodeproj/xcshareddata/xcschemes/CloneProject.xcscheme
+CloneProject.xcodeproj/xcshareddata/xcschemes/Domain.xcscheme
+CloneProject.xcodeproj/xcshareddata/xcschemes/Presentation.xcscheme
+CloneProject.xcodeproj/xcshareddata/xcschemes/Repository.xcscheme
+CloneProject.xcodeproj/xcshareddata/xcschemes/Service.xcscheme
+CloneProject.xcodeproj/xcshareddata/xcschemes/Shared.xcscheme
+CloneProject.xcodeproj/xcshareddata/xcschemes/Util.xcscheme
+CloneProject.xcworkspace/.tuist-generated
+CloneProject.xcworkspace/contents.xcworkspacedata
+CloneProject.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+CloneProject.xcworkspace/xcshareddata/xcschemes/CloneProject-Workspace.xcscheme
+LocalPackages/NMapsMapa/NMapsMapa.xcodeproj/project.xcworkspace/contents.xcworkspacedata
