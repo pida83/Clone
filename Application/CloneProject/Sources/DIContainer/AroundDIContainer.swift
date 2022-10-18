@@ -20,10 +20,18 @@ public class AroundDIContainer: DIContainer {
 //
 //    // MARK: ViewModel
     func makeAroundCoordinater(navigationController: UINavigationController) -> AroundCoordinator{
-        .init(navigationController: navigationController, dependenceis: self)
+        .init(navigationController: navigationController, dependencies: self)
+    }
+    
+    func makeViewModel() -> AroundViewModel{
+        return DefaultAroundViewModel()
     }
 }
 
 extension AroundDIContainer: AroundCoordinatorDependencies {
-    
+    public func makeAroundViewController() -> AroundViewController {
+        let vc = AroundViewController.create(with: makeViewModel())
+            vc.view.backgroundColor = .cyan
+        return vc
+    }
 }

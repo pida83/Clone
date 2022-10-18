@@ -25,8 +25,17 @@ public class ChatDIContainer: DIContainer {
     func makeChatCoordinator(navigationController: UINavigationController) -> ChatCoordinator {
         .init(navigationController: navigationController, dependencies: self)
     }
+    func makeViewModel() -> ChatViewModel{
+        DefaultChatViewModel()
+    }
 }
 
 extension ChatDIContainer: ChatCoordinatorDependencies {
+    public func makeChatViewController() -> ChatViewController {
+        let vc = ChatViewController.create(with: makeViewModel())
+            vc.view.backgroundColor = .magenta
+        return vc
+    }
+    
     
 }

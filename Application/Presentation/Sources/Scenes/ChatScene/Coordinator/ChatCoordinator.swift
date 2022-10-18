@@ -10,7 +10,7 @@
 import UIKit
 
 public protocol ChatCoordinatorDependencies {
-    
+    func makeChatViewController() -> ChatViewController
 }
 
 public class ChatCoordinator: Coordinator {
@@ -18,12 +18,15 @@ public class ChatCoordinator: Coordinator {
     var navigationController : UINavigationController
     var dependencies: ChatCoordinatorDependencies
     
-    public func start() {
-        
-    }
+    
     
     public init(navigationController: UINavigationController, dependencies: ChatCoordinatorDependencies) {
         self.navigationController = navigationController
         self.dependencies         = dependencies
+    }
+    
+    public func start() {
+        let chatVC = self.dependencies.makeChatViewController()
+        self.navigationController.pushViewController(chatVC, animated: false)
     }
 }

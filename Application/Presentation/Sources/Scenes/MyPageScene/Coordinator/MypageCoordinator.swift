@@ -10,21 +10,23 @@ import UIKit
 
 
 public protocol MypageCoordinatorDependencies {
-    
+    func makeMypageViewController() -> MypageViewController
 }
 
 public class MypageCoordinator: Coordinator {
     public var childCoordinator: [Coordinator] = .init()
     var dependencies: MypageCoordinatorDependencies
     var navigationController : UINavigationController
-    public func start() {
-        
-    }
+    
     
     public init(navigationController: UINavigationController, dependencies: MypageCoordinatorDependencies) {
         self.navigationController = navigationController
         self.dependencies         = dependencies
     }
     
+    public func start() {
+        let mypageVC = dependencies.makeMypageViewController()
+        navigationController.pushViewController(mypageVC, animated: false)
+    }
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 import Presentation
-
+import Shared
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -22,11 +22,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
+        
+        
         let viewController = CommonTabbarController()
         appCoordinator             = AppCoordinator(coordinator: viewController, dependencies: appDIContainer)
         window                     = UIWindow(frame: scene.coordinateSpace.bounds)
+        
         window?.windowScene        = scene
         window?.rootViewController = viewController
+        
+        SharedConst.shared.paddingTop = window?.safeAreaInsets.top ?? 0
+        SharedConst.shared.paddingBottom = window?.safeAreaInsets.bottom ?? 0
+        
         
         appCoordinator?.start()
         window?.makeKeyAndVisible()

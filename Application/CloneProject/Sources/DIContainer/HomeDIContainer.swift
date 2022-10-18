@@ -24,8 +24,18 @@ public class HomeDIContainer: DIContainer {
         .init(navigationController: navigationController, dependencies: self)
     }
     
+    
+    func makeViewModel() -> HomeViewModel{
+        return DefaultHomeViewModel()
+    }
 }
 
 extension HomeDIContainer: HomeCoordinatorDependencies {
+    
+    public func makeHomeViewController() -> HomeViewController {
+        let vc = HomeViewController.create(with: makeViewModel())
+            vc.view.backgroundColor = .clear
+        return vc
+    }
     
 }

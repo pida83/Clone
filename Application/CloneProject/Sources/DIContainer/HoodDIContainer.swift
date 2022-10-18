@@ -22,8 +22,18 @@ public class HoodDIContainer: DIContainer {
     func makeHoodCoordinator(navigationController: UINavigationController) -> HoodCoordinator {
         .init(navigationController: navigationController, dependencies: self)
     }
+    
+    func makeViewModel() -> HoodViewModel {
+        DefaultHoodViewModel()
+    }
 }
 
 extension HoodDIContainer : HoodCoordinatorDependencies {
+    public func makeHoodViewController() -> HoodViewController {
+        let vc = HoodViewController.create(with: makeViewModel())
+            vc.view.backgroundColor = .brown
+        return vc
+    }
+    
     
 }

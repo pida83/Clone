@@ -24,8 +24,18 @@ public class MypageDIContainer: DIContainer {
     func makeMypageCoordinator(navigationController: UINavigationController) -> MypageCoordinator{
         .init(navigationController: navigationController, dependencies: self)
     }
+    
+    func makeViewModel() -> MypageViewModel {
+        DefaultMypageViewModel()
+    }
 }
 
 extension MypageDIContainer: MypageCoordinatorDependencies {
+    public func makeMypageViewController() -> MypageViewController {
+        let vc = MypageViewController.create(with: makeViewModel())
+            vc.view.backgroundColor = .darkGray
+        return vc
+    }
+    
     
 }

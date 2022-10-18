@@ -34,15 +34,12 @@ public final class AppCoordinator: Coordinator {
     
     // 각 뷰의 DI Container를 통해 코디네이터를 받고 스타트 하자
     public func start() {
-        
         let vc1 = getNavigation()
         let vc2 = getNavigation()
         let vc3 = getNavigation()
         let vc4 = getNavigation()
         let vc5 = getNavigation()
          
-        
-        
         vc1.tabBarItem = UITabBarItem(title: TabItem.home.title, image: UIImage(systemName: "bookmark"), selectedImage: UIImage(systemName: "bookmark.fill"))
         vc2.tabBarItem = UITabBarItem(title: TabItem.hood.title, image: UIImage(systemName: "location.north"), selectedImage: UIImage(systemName: "location.north.fill"))
         vc3.tabBarItem = UITabBarItem(title: TabItem.around.title, image: UIImage(systemName: "pencil.circle"), selectedImage: UIImage(systemName: "pencil.circle.fill"))
@@ -58,30 +55,25 @@ public final class AppCoordinator: Coordinator {
         
         // 결국 메인 앱코디네이터에서 하는건 코디네이터를 불러와 스타트 해주는 일이다
         let hoomCoordinator   = homeDI.makeHomeCoordinater(navigationController: vc1)
-        var chatCoordinator   = chatDI.makeChatCoordinator(navigationController: vc2)
-        var hoodCoordinaot    = hoodDI.makeHoodCoordinator(navigationController: vc3)
-        var aroundCoordinator = aroundDI.makeAroundCoordinater(navigationController: vc4)
-        var mypageCoordinator = mypageDI.makeMypageCoordinator(navigationController: vc5)
+        let chatCoordinator   = chatDI.makeChatCoordinator(navigationController: vc2)
+        let hoodCoordinaot    = hoodDI.makeHoodCoordinator(navigationController: vc3)
+        let aroundCoordinator = aroundDI.makeAroundCoordinater(navigationController: vc4)
+        let mypageCoordinator = mypageDI.makeMypageCoordinator(navigationController: vc5)
         
-        
-        coordinator.view.backgroundColor   = .darkGray
-        
+        childCoordinator                   = [hoomCoordinator, chatCoordinator, hoodCoordinaot, aroundCoordinator, mypageCoordinator]
         coordinator.viewControllers        = [vc1, vc2, vc3, vc4, vc5]
-        coordinator.modalPresentationStyle = .fullScreen
-     
+        coordinator.modalPresentationStyle = .overFullScreen
+        
         hoomCoordinator.start()
         chatCoordinator.start()
         hoodCoordinaot.start()
         aroundCoordinator.start()
         mypageCoordinator.start()
-//        coordinator.selectedIndex          = 0
     }
-    
-    
-    
 }
 
 extension AppCoordinator {
+    
     /**
      네비게이션컨트롤러를 생성한다
      - Parameters: -
@@ -89,8 +81,8 @@ extension AppCoordinator {
      */
     func getNavigation() -> UINavigationController{
         let navigation = UINavigationController()
-//            navigation.setToolbarHidden(true, animated: false)
-//            navigation.setNavigationBarHidden(true, animated: false)
+//            navigation.setToolbarHidden(false, animated: false)
+//            navigation.setNavigationBarHidden(false, animated: false)
         return navigation
     }
 }
